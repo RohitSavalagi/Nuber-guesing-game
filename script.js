@@ -33,7 +33,7 @@ let playGame = true;
 
 //====================buttons
 let submit = document.getElementById("sub")
-// let restartBtn = $('#reset')
+submit.disabled = true
 let restartBtn = document.getElementById('reset')
 
 
@@ -183,6 +183,7 @@ function newreset(){
     myRange.value = 100;
     document.getElementById("valBox").innerHTML = "100"
     getInputValue.value = ""
+    submit.disabled = true
 }
 
 
@@ -234,6 +235,10 @@ function _disable(){
     console.log("Range is Disabled")
 
 
+}
+
+function enableSub(){
+    submit.disabled = false;
 }
 
 
