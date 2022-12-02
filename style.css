@@ -177,6 +177,10 @@ input[type="text"]:disabled{
     background-color: #ffffff;
 }
 
+#reset:disabled{
+    background-color: #3e1915;
+}
+
 
 
 .buttons{

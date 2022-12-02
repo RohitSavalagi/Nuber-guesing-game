@@ -33,13 +33,14 @@ let history = []
 
 //====================buttons
 let submit = document.getElementById("sub")
-let restartBtn = $('#reset')
+// let restartBtn = $('#reset')
+let restartBtn = document.getElementById('reset')
 
 
 
 
 //functionalities
-restartBtn.hide();
+restartBtn.disabled = true
 
 
 //=====================================Main Functions==========================================
@@ -111,13 +112,13 @@ function checkGuess(guess) {
         `<div class="alert alert-lost">You Lost the Match <br>Number was ${rand}</div>`;
         endGame();
     }
-    myRange.setAttribute.disabled = true;
+    myRange.disabled = true;
 }
 
 //Pushing and Showing  History
 //Updating No Of Guesses
 function displayGuesses(guess) {
-    restartBtn.show();
+    restartBtn.disabled = false;
     getInputValue.value = '';
     var createHistoryElement = document.createElement('div');
     createHistoryElement.classList.add('list-group-item');
@@ -139,8 +140,10 @@ function endGame() {
     p.innerHTML = `<button id="newGame" class="newGame">Start New Game</button>`
     startOver.appendChild(p);
     playGame = false;
-    restartBtn.hide();
+    restartBtn.disabled = true
+    console.log("disabled")
     document.getElementById('resultHistory').innerHTML = "";
+
     newGame();
     
 }
@@ -152,52 +155,47 @@ function endGame() {
 
 //Adding an Event Listner
 function newGame() {
-    $('.newGame')[0].addEventListener('click', newStarting, false)
+    document.getElementById('newGame').addEventListener('click', newStarting, false)
 }
 //function according to event
 function newStarting() {
     // console.log("newStarting is pressed")
-    rand = parseInt((Math.random() * 100) + 1);
-    console.log(rand)
-    history = [];
-    numOfGuess = 1;
-    remain = parseInt(Math.floor(Math.log(max))) + 1
-    returnResult.innerHTML = ""
-    document.getElementById('resultHistory').innerHTML = "";
-    remaining.innerHTML = `${6 - numOfGuess} `;
-    getInputValue.removeAttribute('disabled');
+    // max = myRange.value;
+    newreset()
+    // remaining.innerHTML = `5`;
+    reviseMax();
     startOver.removeChild(p);
-    playGame = true;
-    document.getElementById('getGuess').click();
-    restartBtn.hide();
-    label.click();
-    myRange.disabled = false;
-    myRange.value = 100;
-    document.getElementById("valBox").innerHTML = "100"
-    remaining.innerHTML = `5`;
 }
 
 //After Clicking Reset Button 
 
 function reseting() {
     // console.log("Reseting is pressed")
+    // max = myRange.value;
+   newreset()
+    //startOver.removeChild(p);  
+    // remaining.innerHTML = `5`;
+    reviseMax()
+}
+
+function newreset(){
     rand = parseInt((Math.random() * 100) + 1);
     console.log(rand)
     history = [];
-    remain = parseInt(Math.floor(Math.log(max))) + 1
     numOfGuess = 1;
+    remain = parseInt(Math.floor(Math.log(max))) + 1
     returnResult.innerHTML = ""
-    remaining.innerHTML = `${6 - numOfGuess} `;
-    getInputValue.value = ""
-    getInputValue.removeAttribute('disabled');
-    //startOver.removeChild(p);  
-    playGame = true;
     document.getElementById('resultHistory').innerHTML = "";
-    restartBtn.hide();
+    remaining.innerHTML = `${6 - numOfGuess} `;
+    getInputValue.removeAttribute('disabled');
+    playGame = true;
+    // document.getElementById('getGuess').click();
+    restartBtn.disabled = true
+    label.click();
     myRange.disabled = false;
     myRange.value = 100;
     document.getElementById("valBox").innerHTML = "100"
-    remaining.innerHTML = `5`;
+    getInputValue.value = ""
 }
 
 
@@ -223,6 +221,14 @@ function showVal(newVal) {
     console.log(rand + " is the random number")
     document.getElementById("valBox").innerHTML = `<p>${max}</p>`;
 }
+
+function reviseMax(){
+    max = myRange.value;
+    console.log("Now Max value is revised according to range")
+    remain = parseInt(Math.floor(Math.log(max))) + 1;
+    remaining.innerHTML = `${remain - numOfGuess} `;
+}
+
 
 
 //=====Geting Random number

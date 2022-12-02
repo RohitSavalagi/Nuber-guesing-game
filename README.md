@@ -1,2 +1,2 @@
-# Training
+Number Guessing Game
 
