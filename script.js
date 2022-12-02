@@ -1,7 +1,6 @@
 //==========================variables===========================================
 
-var remain = 6;
-console.log(myRange)
+var remain = 5;
 
 //==========================dom selectors
 var myRange = document.getElementById("myrange");
@@ -10,7 +9,7 @@ var returnResult = document.getElementById('currentResult');
 const startOver = document.getElementById("newStarting");
 var returnHistory = document.getElementById('resultHistory');
 //Selecting By Tag
-var label = document.getElementsByTagName("label")[0];
+var label = document.getElementsByTagName("label")[1];
 //Input text feild
 let getInputValue = document.getElementById("getGuess")
 
@@ -18,6 +17,7 @@ let getInputValue = document.getElementById("getGuess")
 
 const p = document.createElement('p');
 var max = myRange.value;
+
 console.log("max value is set to " + max)
 var rand = getRandom(0, max);
 document.getElementById("randBox").innerHTML = `<span>${rand}<span>`;
@@ -27,7 +27,7 @@ document.getElementById("randBox").innerHTML = `<span>${rand}<span>`;
 
 var numOfGuess = 1;
 let playGame = true;
-let history = []
+
 
 
 
@@ -49,7 +49,6 @@ restartBtn.disabled = true
 if (playGame) {
     submit.addEventListener("click", function (e) {
         e.preventDefault();
-        // alert("Checking Functionality")
         const guess = parseInt(getInputValue.value);
         validateGuess(guess);
     })
@@ -63,21 +62,20 @@ if (playGame) {
 
 function validateGuess(guess) {
     
-    // document.getElementById("rangeLabel").click();re
     
     if (isNaN(guess)) {
         alert('Please Enter a valid Number');
     }
     else if (guess < 1) {
-        alert('Please enter number greater than 1');
+        alert('Please enter number greater than 0');
     }
     
     else if (guess > max) {
-        alert("please Enter a value lesser than " + max);
+        alert("please Enter a value lesser than" + (++max));
     }
     
     else {
-        history.push(guess);
+     
         displayGuesses(guess);
         checkGuess(guess);
     }
@@ -88,7 +86,7 @@ function validateGuess(guess) {
 
 function checkGuess(guess) {
     var flag = 0;
-    // console.log(numOfGuess)
+    
     console.log(remain)
     if (guess == rand) {
         returnResult.innerHTML =
@@ -139,13 +137,11 @@ function endGame() {
     p.classList.add('button');
     p.innerHTML = `<button id="newGame" class="newGame">Start New Game</button>`
     startOver.appendChild(p);
-    playGame = false;
     restartBtn.disabled = true
     console.log("disabled")
     document.getElementById('resultHistory').innerHTML = "";
-
     newGame();
-    
+    submit.disabled = true
 }
 
 
@@ -157,12 +153,11 @@ function endGame() {
 function newGame() {
     document.getElementById('newGame').addEventListener('click', newStarting, false)
 }
+
 //function according to event
 function newStarting() {
-    // console.log("newStarting is pressed")
-    // max = myRange.value;
+    submit.disabled = false
     newreset()
-    // remaining.innerHTML = `5`;
     reviseMax();
     startOver.removeChild(p);
 }
@@ -170,26 +165,18 @@ function newStarting() {
 //After Clicking Reset Button 
 
 function reseting() {
-    // console.log("Reseting is pressed")
-    // max = myRange.value;
    newreset()
-    //startOver.removeChild(p);  
-    // remaining.innerHTML = `5`;
     reviseMax()
 }
 
 function newreset(){
     rand = parseInt((Math.random() * 100) + 1);
     console.log(rand)
-    history = [];
     numOfGuess = 1;
     remain = parseInt(Math.floor(Math.log(max))) + 1
     returnResult.innerHTML = ""
     document.getElementById('resultHistory').innerHTML = "";
-    remaining.innerHTML = `${6 - numOfGuess} `;
     getInputValue.removeAttribute('disabled');
-    playGame = true;
-    // document.getElementById('getGuess').click();
     restartBtn.disabled = true
     label.click();
     myRange.disabled = false;
@@ -227,6 +214,7 @@ function reviseMax(){
     console.log("Now Max value is revised according to range")
     remain = parseInt(Math.floor(Math.log(max))) + 1;
     remaining.innerHTML = `${remain - numOfGuess} `;
+
 }
 
 
@@ -245,6 +233,9 @@ function _disable(){
     myRange.disabled = true;
     console.log("Range is Disabled")
 
+
 }
+
+
 
 

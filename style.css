@@ -106,7 +106,9 @@ button{
 
 
 
+
 #getGuess{
+    width: 500px;
     font-size: 40px;
     text-align: center;
     border-style: none;
@@ -177,9 +179,13 @@ input[type="text"]:disabled{
     background-color: #ffffff;
 }
 
-#reset:disabled{
+button:disabled{
     background-color: #3e1915;
+    color: #fff;
+    cursor: no-drop;
 }
+
+
 
 
 
@@ -218,6 +224,7 @@ input[type="text"]:disabled{
     color: #ffffff;
     border-style: none;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    cursor: pointer;
 }
 
 #newGame:hover{

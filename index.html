@@ -22,7 +22,7 @@
         </div>
         <div class="leftpane" id="leftpane">
             <h1>Guesses Remaining</h1>
-            <p class="last_p" id="RemainingGuesses"><span id="lastResult">5</span></p>
+            <p class="last_p" id="RemainingGuesses"><span id="lastResult">4</span></p>
             <div class="range">
                 <label for="myrange" id="rangeLabel" onclick="_disable()">Select Range</label>  
                 <input
@@ -40,7 +40,7 @@
         </div>
         <div class="middlepane">
             <label for="getGuess"><h1>Guess The Number</h1></label>
-            <input type="number" id="getGuess" class="getGuess" min="10">
+            <input type="number" id="getGuess" class="getGuess" min="1" max="100">
             <div class="bottons">
                 <button type="submit" id="sub" class="btn">Submit</button>
                 <button type="submit" id="reset" class="btn" onclick="reseting()">Reset</button>
