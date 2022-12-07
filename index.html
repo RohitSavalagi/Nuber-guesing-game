@@ -1,66 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Number Guessing Game</title>
-    <link rel="stylesheet" href="style.css">
-    
-  
-  
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <div class="toppane">
-            <h1 id="gameHead">Number Guessing Game</h1>
-            <div id="paras">
-                <p>Try and guess a number by selecting your range and No of attempts can be seen in Guess Remaining window</p>
-            </div>
-        </div>
-        <div class="leftpane" id="leftpane">
-            <h1>Guesses Remaining</h1>
-            <p class="last_p" id="RemainingGuesses"><span id="lastResult">4</span></p>
-            <div class="range">
-                <label for="myrange" id="rangeLabel" onclick="_disable()">Select Range</label>  
-                <input
-                id="myrange"
-                type="range"
-                min="10"
-                max="1000"
-                step="10"
-                oninput="showVal(this.value)"
-                value="100"
-              />
-              <span id="valBox">100</span>
-              <span id="randBox"></span>
-            </div>
-        </div>
-        <div class="middlepane">
-            <label for="getGuess"><h1>Guess The Number</h1></label>
-            <input type="number" id="getGuess" class="getGuess" min="1" max="100" oninput="enableSub()">
-            <div class="bottons">
-                <button type="submit" id="sub" class="btn">Submit</button>
-                <button type="submit" id="reset" class="btn" onclick="reseting()">Reset</button>
-            </div>
-            <div id="currentResult">
+      <div class="top-pane">
+        <h1 id="game-heading">Number Guessing Game</h1>
+        <p id="instruction">
+          Try and guess a number by selecting your range and No of attempts can
+          be seen in Guess Remaining window
+        </p>
+      </div>
 
-            </div>
-            <div id="newStarting">
-                <!-- new Start link will come here -->
-            </div>
+      <div class="left-pane">
+        <h1>Guesses Remaining</h1>
+        <div id="guessRange">
+            <input
+            id="guess-range"
+            type="range"
+            min="2"
+            max="11"
+            step="1"
+            value=max
+            oninput="ShowUpdatedChances(this.value)"
+          /> 
         </div>
-        <div class="rightpane">
-            <h1 id="histHead">History</h1>
-            <div id="resultHistory">
-                
-            </div>
+        <p id="remaining-guess-container"><span id="last-result" class="left left--last-result" onchange="updateGuessRangeSlider(this)">5</span></p>
+        <div class="range">
+          <label for="my-range" id="range-label" onclick="disableRangeElement()"
+            >Select Range</label
+          >
+          <input
+            id="my-range"
+            type="range"
+            min="10"
+            max="1000"
+            step="10"
+            oninput="ShowValue(this.value)"
+            value="100"
+          />
+          <span id="value-box" class = "left left--value-box">100</span>
         </div>
+      </div>
+
+      <div class="middle-pane">
+        <label for="get-guess"><h1>Guess The Number</h1></label>
+        <input
+          type="number"
+          id="get-guess"
+          min="1"
+          max="100"
+          oninput="enableSubmitButton()"
+        />
+        <div>
+          <button type="submit" id="submit-button" disabled onclick="submitClick()">Submit</button>
+          <button type="submit" id="reset-button" onclick="reset()" disabled>
+            Reset
+          </button>
+        </div>
+        <div id="current-result"></div>
+        <div id="new-starting">
+          <!-- new Start link will come here -->
+        </div>
+      </div>
+
+      <div class="right-pane">
+        <h1 id="history-heading">History</h1>
+        <div id="result-history"></div>
+      </div>
     </div>
     <!-- <script src="require.js"></script> -->
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
